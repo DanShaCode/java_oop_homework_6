@@ -1,7 +1,6 @@
 package ru.sharipov;
 
 import ru.sharipov.Classes.*;
-import ru.sharipov.Interfaces.DeliveryMethod;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,16 +20,16 @@ public class Main {
         System.out.println(marketWarehouse.getWareHouseProductList());
         System.out.println(marketWarehouse.getWarehouseAmount());
 
+        //Creating DeliveryMethod
+        SelfDelivery selfDelivery = new SelfDelivery();
+        HomeDelivery homeDelivery = new HomeDelivery();
+
         //Creating Order
         Order order = new Order();
 
-        //Creating DeliveryMethod
-        DeliveryMethod deliveryByHome = new DeliveryByHome();
-        DeliveryMethod deliveryBySelf = new DeliveryBySelf();
-
         //Resolve Order
-        order.processOrderPush(milk, 100, deliveryByHome);
-        order.processOrderPush(butter, 100, deliveryBySelf);
+        order.processSelfOrderPush(milk, 100,selfDelivery);
+        order.processHomeOrderPush(butter, 100, homeDelivery);
 
     }
 }
