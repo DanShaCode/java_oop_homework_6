@@ -10,4 +10,5 @@ public interface Warehouse {
     void removeProduct(Product product);
     void getWarehouseInfo();
     void getProductInfo(Product product);
+
 }

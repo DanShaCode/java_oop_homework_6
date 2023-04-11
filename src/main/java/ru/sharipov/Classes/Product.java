@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class Product {
     private String name;

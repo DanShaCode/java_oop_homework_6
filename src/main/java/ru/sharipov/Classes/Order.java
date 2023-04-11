@@ -7,8 +7,11 @@ public class Order implements OrderHandler {
 
     @Override
     public void processOrderPush(Product product, Integer amount, DeliveryMethod deliveryMethod) {
-        product.decreaseQuantity(amount);
-        deliveryMethod.deliverProduct(product);
+        if (amount <= product.getQuantity()){
+            product.decreaseQuantity(amount);
+            deliveryMethod.deliverProduct(product);
+        } else
+            System.out.println("К");
     }
 
     @Override
