@@ -1,13 +1,13 @@
-package ru.sharipov.Classes;
+package ru.sharipov.Model.Classes;
 
 import lombok.Data;
-import ru.sharipov.Interfaces.Warehouse;
+import ru.sharipov.Model.Interfaces.WarehouseChanger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class MarketWarehouse implements Warehouse {
+public class MarketWarehouse implements WarehouseChanger {
     List<Product> wareHouseProductList;
     private Integer warehouseAmount;
 
@@ -29,18 +29,6 @@ public class MarketWarehouse implements Warehouse {
                 wareHouseProductList.remove(product);
                 this.warehouseAmount = getWarehouseAmount() + product.getQuantity();
             }
-    }
-
-    @Override
-    public void getWarehouseInfo() {
-        System.out.println(wareHouseProductList);
-    }
-
-    @Override
-    public void getProductInfo(Product product) {
-        for (Product prod : wareHouseProductList)
-            if (prod.equals(product))
-                System.out.println(prod);
     }
 
 }
