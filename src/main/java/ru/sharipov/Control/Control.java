@@ -9,11 +9,10 @@ public class Control {
     public Control() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("Введите логин и пароль.");
+        System.out.println("Введите логин (1234) и пароль (1234).");
         System.out.println();
         System.out.print("Введите логин: ");
         String login = scanner.nextLine();
-        System.out.println();
         System.out.print("Введите пароль: ");
         Integer password = scanner.nextInt();
         scanner.nextLine();
@@ -30,19 +29,17 @@ public class Control {
             HomeDelivery homeDelivery = new HomeDelivery();
             Order order = new Order();
             View view = new View();
+            Searcher searcher = new Searcher();
             Integer userInput = 0;
-            while (userInput != 9) {
+            while (userInput != 6) {
                 System.out.println("-=== Система управления складом ===-");
                 System.out.println();
                 System.out.println("1. Посмотреть товары на складе ");
-                System.out.println();
                 System.out.println("2. Добавить товар ");
-                System.out.println();
                 System.out.println("3. Отгрузить товар ");
-                System.out.println();
                 System.out.println("4. Посмотреть свободное место на складе ");
-                System.out.println();
-                System.out.println("9. Закрыть программу ");
+                System.out.println("5. Поиск товара ");
+                System.out.println("6. Закрыть программу ");
                 System.out.println();
                 System.out.print("Введите цифру из меню: ");
                 userInput = scanner.nextInt();
@@ -63,7 +60,6 @@ public class Control {
                     case 3 -> {
                         System.out.println();
                         System.out.println("1. Отправить товар доставкой ");
-                        System.out.println();
                         System.out.println("2. Отгрузить товар на складе ");
                         System.out.println();
                         System.out.print("Введите соответствующую цифру из меню: ");
@@ -91,6 +87,69 @@ public class Control {
                         }
                     }
                     case 4 -> view.getWarehouseCurrentAmount(marketWarehouse);
+                    case 5 -> {
+                        System.out.println();
+                        System.out.println("1. Поиск по названию ");
+                        System.out.println("2. Поиск по количеству ");
+                        System.out.println("3. Поиск по цене ");
+                        System.out.println();
+                        System.out.print("Введите цифру из меню: ");
+                        Integer input = Integer.parseInt(scanner.nextLine());
+                        switch (input){
+                            case 1 -> {
+                                System.out.println();
+                                System.out.print("Введите название: ");
+                                String productName = scanner.next();
+                                scanner.nextLine();
+                                searcher.findProductByName(marketWarehouse,productName,view);
+                            }
+                            case 2 -> {
+                                System.out.println();
+                                System.out.println("1. Количество от ");
+                                System.out.println("2. Количество до ");
+                                System.out.println();
+                                System.out.print("Введите цифру из меню: ");
+                                Integer subMenuSearchInput = Integer.parseInt(scanner.nextLine());
+                                switch (subMenuSearchInput){
+                                    case 1 -> {
+                                        System.out.println();
+                                        System.out.print("Введите значение: ");
+                                        Integer value = Integer.parseInt(scanner.nextLine());
+                                        searcher.findQuantitySearchFrom(marketWarehouse,value,view);
+                                    }
+                                    case 2 -> {
+                                        System.out.println();
+                                        System.out.print("Введите значение: ");
+                                        Integer value = Integer.parseInt(scanner.nextLine());
+                                        searcher.findQuantitySearchUpTo(marketWarehouse,value,view);
+                                    }
+                                }
+                            }
+                            case 3 -> {
+                                System.out.println();
+                                System.out.println("1. Цена от ");
+                                System.out.println("2. Цена до ");
+                                System.out.println();
+                                System.out.print("Введите цифру из меню: ");
+                                Integer subMenuSearchInput = Integer.parseInt(scanner.nextLine());
+                                switch (subMenuSearchInput){
+                                    case 1 -> {
+                                        System.out.println();
+                                        System.out.print("Введите значение: ");
+                                        Double value = Double.parseDouble(scanner.nextLine());
+                                        searcher.findPriceSearchFrom(marketWarehouse,value,view);
+                                    }
+                                    case 2 -> {
+                                        System.out.println();
+                                        System.out.print("Введите значение: ");
+                                        Double value = Double.parseDouble(scanner.nextLine());
+                                        searcher.findPriceSearchUpTo(marketWarehouse,value,view);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 }
             }
             scanner.close();

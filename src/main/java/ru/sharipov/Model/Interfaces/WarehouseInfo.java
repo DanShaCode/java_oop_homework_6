@@ -7,4 +7,5 @@ public interface WarehouseInfo {
     void getWarehouseInfo(MarketWarehouse marketWarehouse);
 
     void getWarehouseCurrentAmount(MarketWarehouse marketWarehouse);
+
 }
