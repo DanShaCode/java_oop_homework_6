@@ -56,6 +56,7 @@ public class Control {
                         System.out.print("Введите стоимость продукта: ");
                         Double productPrice = Double.parseDouble(scanner.nextLine());
                         marketWarehouse.addProduct(new Product(productName, productQuantity, productPrice));
+                        System.out.println();
                     }
                     case 3 -> {
                         System.out.println();
